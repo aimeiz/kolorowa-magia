@@ -21,14 +21,14 @@ uint8_t Led::sinusoida(uint8_t kat) {
 
 uint8_t Led::ledLoop() {
   long AktualnyCzas = millis();          //aktualny czas systemowy red
-  if (AktualnyCzas > this->PoprzedniCzas + duration) {
+  if (AktualnyCzas > this->PoprzedniCzas + this->duration) {
     this->led++;
-    PoprzedniCzas = AktualnyCzas;
+    this->PoprzedniCzas = AktualnyCzas;
     // analogWrite(port, led);
     this->ledIntensity = sinusoida(this->led);
     analogWrite(this->port, this->ledIntensity);
   }
-  return led;
+  return this->led;
 }
 
 uint8_t Led::getLed(){
